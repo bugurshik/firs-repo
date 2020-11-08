@@ -1,0 +1,142 @@
+body {
+  font-family: Arial;
+  padding: 0;
+  margin: 0;
+  color: #222222;
+}
+div {
+  box-sizing: border-box;
+}
+header {
+  background: url(../img/first-bg.jpg) no-repeat center top / cover;
+}
+nav {
+  float: right;
+  margin-top: 50px;
+}
+
+.logo {
+  margin-top: 41px;
+  float: left;
+}
+.clearfix:after{
+  content: '';
+  display: table;
+  width: 100%;
+  clear: both;
+
+}
+.container{
+  width: 930px;
+  margin: 0 auto;
+}
+
+.menu {
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+.menu li {
+  float: left;
+  display:  block;
+  margin-right: 41px;
+}
+.menu a {
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+.titles{
+  font-size: 60px;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  padding-top: 250px;
+}
+.titles-first {
+  font-size: 40px;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 120px;
+}
+h1 {
+  font-size: 40px;
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 15px;
+}
+.button{
+  background: #fed136;
+  color: #484543;
+  border-radius: 3px;
+  display: block;
+  width: 240px;
+  padding: 20px 0;
+  margin: 0 auto;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 50px;
+}
+.title {
+  padding-top: 75  px;
+}
+.title h2 {
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+}
+.title p {
+  color: #777777;
+  text-align: center;
+  font-size: 16px;
+  margin-top: 5px;
+}
+.Servises{
+  margin-top: 80px;
+}
+.Servises_item{
+  width: 270px;
+  float: left;
+  text-align: center;
+}
+
+.Servises h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+.Servises p {
+  color: #777777;
+  font-size: 14px;
+  line-height: 1.55em;
+}
+.Servises_item:last-child {
+  float: left;
+}
+.Servises_item:nth-child(2) {
+  margin-left: 60px;
+}
+.works {
+  margin-top: 174px;
+}
+.works img {
+  float: left;
+}
+.works:nth-child(2) {
+  margin-left: 29px;
+}
+.works:last-child {
+  float: right;
+}
+#Servises {
+  padding-bottom: 120px;
+}
+#Portfolio {
+  background: #f7f7f7;
+}
