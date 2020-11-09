@@ -10,7 +10,7 @@ router.get('/cool', function(req, res, next) {
   res.render('index', { title: 'Cool' });
 });
 router.get('/',function(req,res){
-  res.sendFile(path.dirname(__dirname)+'/views/index.html');
+  res.sendFile(path.dirname(__dirname)+'/index.html');
 });
 /*
 router.get('/page/:id', function(req, res, next) {
