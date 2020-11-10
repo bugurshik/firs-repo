@@ -129,3 +129,12 @@ const border = {
 const OnLoaded = function (a) {
     //if(a) document.getElementById('img').src = a.value;
 }
+
+const navToggle = document.getElementById('nav-toggle');
+const nav = document.getElementById('lpanel');
+const toToggleNav = function(isChecked) {
+  
+  if(isChecked){
+    nav.style.left = '0';
+  }
+}

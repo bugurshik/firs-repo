@@ -11,17 +11,25 @@
 <body>
   <header>
     <div class="site-title">
+      <div id='menu'></div>
+      <input type="checkbox"  onclick="toToggleNav(this.value)">
       <h1>CSS Generator</h1>
     </div>   
   </header>
+  
+
+
   <div class="wrapped">
     <div class="wrapper-flex">   
-
-      <div class="left-panel">
+      
+  <input type="checkbox" id='nav-toggle'>
+      <div class="nav" id='lpanel'>
+        
+  <label for="nav-toggle" class="nav-toggle" onclick></label>
         <div class="tree-panel">
-
+          
           <div class="tree-panel__item-title">Description</div>
-
+    
           <details class='tree-panel__item is-expandable' open>
             <summary class='tree-panel__item-title'> border </summary>
             <div class="tree-panel__item">              
@@ -41,7 +49,7 @@
               <a class='tree-panel__item-title'> <input type="checkbox" id='border-color1'> <label for="border-color1">border-color</label></a>   
             </div>
           </details>
-
+    
           <details class='tree-panel__item is-expandable'>
             <summary class='tree-panel__item-title'> border </summary>
             <div class="tree-panel__item">              
@@ -51,7 +59,7 @@
               <a class='tree-panel__item-title'> <input type="checkbox" id='border-color2'> <label for="border-color2">border-color</label></a>   
             </div>
           </details>
-
+    
           <details class='tree-panel__item is-expandable'>
             <summary class='tree-panel__item-title'> border </summary>
             <div class="tree-panel__item">              
@@ -61,7 +69,7 @@
               <a class='tree-panel__item-title'> <input type="checkbox" id='border-color3'> <label for="border-color3">border-color</label></a>   
             </div>
           </details>
-
+    
           <details class='tree-panel__item is-expandable'>
             <summary class='tree-panel__item-title'> border </summary>
             <div class="tree-panel__item">              
@@ -71,7 +79,7 @@
               <a class='tree-panel__item-title'> <input type="checkbox" id='border-color1'> <label for="border-color1">border-color</label></a>   
             </div>
           </details>
-
+    
           <details class='tree-panel__item is-expandable'>
             <summary class='tree-panel__item-title'> border </summary>
             <div class="tree-panel__item">              
@@ -81,7 +89,7 @@
               <a class='tree-panel__item-title'> <input type="checkbox" id='border-color2'> <label for="border-color2">border-color</label></a>   
             </div>
           </details>
-
+    
           <details class='tree-panel__item is-expandable'>
             <summary class='tree-panel__item-title'> border </summary>
             <div class="tree-panel__item">              
@@ -94,6 +102,7 @@
           
         </div>
       </div>  
+      
       <div class="window">
 
         <div class="window_item result-box">
@@ -132,6 +141,10 @@
           <div id="cube"></div>
         </div>
 
+        <div class="window_item">
+          <div id="test"></div>
+        </div>
+
       </div>  
       <div class="right-panel">
         <div class="input-box">
@@ -152,7 +165,7 @@
 
           <div class="input-box_item">
             <div class="input-box_item-title" >Broder color</div>
-                <input type="color" value = '#ffffff'onchange="border.color.change(this.value)">
+            <input type="color" value = '#ffffff' oninput="border.color.change(this.value)">
           </div>
 
           <div class="input-box_item">
@@ -161,7 +174,7 @@
           </div>
           
           <div class="input-box_item">
-            <div class="input-box_item-title">Broder Radius</div>
+            <div class="input-box_item-title">Border Radius</div>
             <div class="input-box__border-radius">
               <input type="text" class="input-text-border-radius" placeholder='0' id="result-tlr" value="0" maxlength="3">          
               <input type="range" class="input-range-border-radius" id='tlr' min="0" max="100" value="0">
@@ -179,6 +192,8 @@
               <input type="range" class="input-range-border-radius" id='blr' min="0"; max="100"; value="0">
             </div>  
           </div>
+
+          <div class="line"></div>
 
           <div class="input-box_item">
             <div class="input-box_item-title">Loade image</div>
