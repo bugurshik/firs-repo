@@ -2,10 +2,10 @@
     --primary-text1Color: #CFD8DC;
     --primary-text2color: #757575;
 
-    --primary-bgcolor: #455A64;
+    --primary-bgcolor: white;
     --primary-windowcolor:#CFD8DC;
 
-    --primary-maincolor: #212121;
+    --primary-maincolor: white;
     --primary-secorndcolor: #212121;
     --primary-agentcolor: #FF5252;
     --primary-shadow: 0 0 2px #22222267;
@@ -25,6 +25,10 @@
     background-color: #d6d6d6;
 }
 
+/*-----общие стили-----*/
+button {
+    font-size: 16;
+}
 summary {
     display: block;
     cursor: pointer;
@@ -33,29 +37,12 @@ summary {
 summary::-webkit-details-marker {
     display: none;
 }
-body{
-    background: var(--primary-bgcolor);    
-    margin: 0;
-    font-family: -apple-system, system-ui, BlinkMacSystemFont, 
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
-    font-size: 13px;
-}
-button {
-    font-size: 16;
-}
-header{
-    background-color: var(--primary-maincolor);
-    width: 100%;
-    height: 70px;
-    display: flex;   
-}
-h1 {
-margin: 0 auto;
-}
-footer{
-    background-color:var(--primary-maincolor);
-    width: 100vw;
-    height: 5VH;
+select {
+    outline: none;
+    border: none;
+    font-size: small;
+    padding: 5px;
+    background-color: var(--primary-text1Color);
 }
 input[type="text"] {
     color:  var(--primary-text2color);
@@ -70,27 +57,58 @@ input[type="text"] {
 input[type='range']{
     width: 120px;
 }
-input:focus {
-    outline: none;
-}
-select {
-    outline: none;
-    border: none;
-    font-size: small;
-    padding: 5px;
-    background-color: var(--primary-text1Color);
-}
 input[type='color'] {
     outline: none;
     border: none;
 }
-.site-title {
-    margin: 0 auto;
-    text-transform: uppercase;
-    color: var(--primary-text1Color);
-    font-size: var(--primary-fontSizeTitle);
+input:focus {
+    outline: none;
 }
 
+/*-----разное-----*/
+.line {
+    width: 100%;
+    height: 2px;
+    margin: 10px 0;
+    background-color: var(--primary-text1Color);
+}
+
+/*----хедер-----*/
+header {
+    background-color: #ff3939;
+    width: 100%;
+    height: 70px;
+    text-align: center;
+}
+header h1 {
+    margin: 0 auto;
+    color: #292929;
+    font-size: 50px;
+    text-transform: uppercase;
+}
+#menu-btn {
+    position: absolute;
+    display: none;
+}
+
+/*-----футер-----*/
+footer{
+    background-color: gainsboro;
+    width: 100vw;
+    height: 50px;
+}
+
+/*-----тело-----*/
+body {
+    background: var(--primary-bgcolor);    
+    margin: 0;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
+    font-size: 13px;
+    overflow-x: hidden;
+}
+
+/*-----скелет-----*/
 .wrapped {
     color:var(--primary-text2color);
     max-width: 1920px;
@@ -100,26 +118,18 @@ input[type='color'] {
     display: flex;
     justify-content: space-between;
 }
-.line {
-    width: 100%;
-    height: 2px;
-    margin: 20px 0;
-    background-color: var(--primary-text1Color);
-}
+
+/*-----левая секция-----*/
 .nav {
-    width: 250px;
-    float: left;
-    background: var(--primary-windowcolor);
+    width: 400px;
+    min-width: 200px;
     box-shadow: var(--primary-shadow);
 }
 
 .tree-panel {
-    height: 86vh;
-    overflow-y: scroll;
-    margin: 15px 15px 0 0;
-    padding: 25px 20px 20px 10px;
     background: #ffffff;
     box-shadow: var(--primary-shadow);
+    padding-bottom: 50px;
 }
 
 .tree-panel__item {
@@ -136,10 +146,10 @@ input[type='color'] {
     height: calc(100% - 3.2rem);
 }
 .tree-panel__item .tree-panel__item {
-    margin-left: 2rem;
+    padding-left: 2rem;
 }
 .tree-panel__item.is-expandable > .tree-panel__item-title {
-    padding-left: 0.5rem;
+    padding-left: 1rem;
 }
 .tree-panel__item.is-expandable[open] > .tree-panel__item-title::after {
     font-family: "ionicons";
@@ -158,52 +168,81 @@ input[type='color'] {
     text-align: center;
 }
 
-
 .tree-panel__item-title {
-    cursor: pointer;
     display: block;
     outline: 0;
     color: var(--primary-text2color);
     font-size: 1.2rem;
     line-height: 2rem;
+    padding-left: 1rem;
+}
+.tree-panel__item-title:hover {
+    background-color: #e2e2e2;
+    color: black;
+}
+.tree-panel__item-title label {
+    cursor: pointer;
 }
 .tree-panel__item-title::-webkit-details-marker {
 display: none;
 }
 
-
+/*-----центральная секция-----*/
 .window {
     background: var(--primary-maincolor);
     box-shadow: var(--primary-shadow);
     width: 100%;
-    margin: 15px;
+    max-width: 100%;
+    height: calc(100vh + 190px);
+    max-height: 1040px;
     display: flex;
-    flex-wrap: wrap;
-
-
-    flex-direction: row-reverse;
-    align-content: stretch;
-    justify-content:center;   
+    flex-direction: column-reverse;
+    align-items: center;
+    overflow: hidden;
 }
 .window_item {
-    border: 5px solid red;
-    margin: 10px;
     padding: 10px;
+    flex-grow: 1;
+}  
+.cube {
+    flex-grow: 2;
 }
-.window_item.result-box {
-    order: 1;
+.container {
+    width: calc(15vw + 100px);
+    height: calc(15vw + 100px);
+    margin: 0 auto; 
 }
-.window_item.input-box {
-    order: -1;
+#cube {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    width: 15vw;
+    height: 15vw;   
+    max-width: 500px;
+    max-height: 500px;
+    box-shadow: var(--primary-shadow);
+    background-color: var(--primary-agentcolor);   
+    border-top-left-radius: 50px 10px;
 }
 
+#test {
+    width: 50%;
+    height: 10%;
+    background: #ffffff;
+}
+
+/*окно вывода CSS кода*/
 .result-box {
     min-width: 400px;
-    height: 65vh;
+    max-width: 400px;
+    max-height: 250px;
+    margin-bottom: 50px;
     background: white;
     display: flex;
     flex-direction: column;
     align-content: stretch;
+    border: 1px solid #d3d3d3;
     box-shadow: var(--primary-shadow-light);
 }
 .result-box button{
@@ -222,22 +261,31 @@ display: none;
 #result-box__text-box {
     height: auto;
     overflow: auto;
-    line-height: 1.2;
+    line-height: 1;
 }
 
+/*-----правая секция-----*/
 .right-panel {
-    width: 250px;
-    padding: 10px;
+    width: 500px;
     float: right;
+    overflow: auto;
+
+    padding: 0 15px 70px 15px;
     background: white;
     box-shadow: var(--primary-shadow);
-    border: 1px solid red;
+    height: calc(100vh - 50px);
+    overflow-y: scroll;
 }
+
 .input-box {
-    margin: 0;
+    padding-top: 15px;
+    border-bottom: 1px solid #e1e1e1;
+}
+.input-box_title {
+    font-size: 18px;
 }
 .input-box_item {
-    margin: 10px;
+    margin: 0.5rem 0;
 }
 .input-box_item-title {
     margin: 5px 0;
@@ -246,130 +294,88 @@ display: none;
     margin-top: 10px;   
 }
 
-#cube {
-    margin: auto;
-    width: 20vw;
-    height: 20vw;
-    min-width: 150px;
-    max-width: 500px;
-    min-height: 150px;
-    max-height: 500px;
-    box-shadow: var(--primary-shadow);
-    background-color: var(--primary-agentcolor);   
-}
-
-#test {
-    width: 50%;
-    height: 10%;
-    background: #ffffff;
-}
-
-
-
-@media all and (max-width: 800px) { 
-    .window { margin: 0; }
-
-/**
- * Переключаемая боковая панель навигации
- * выдвигающаяся по клику слева
- */
- 
- .nav {
-    width: 320px;
-    min-width: 320px;
-    height: 100%;
+/*-----debug-----*/
+h2 {
+    font-size: 13px;
+    right: 0;
     position: absolute;
-    top: 20px;
-    bottom: 0;
+    color: red;
+}
+
+@media all and (max-width: 1040px) { 
+h1 {
+    font-size: 40px;
+}
+header {
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+/*-----центральная секция-----*/
+.window { 
     margin: 0;
-    /* сдвигаем (прячем) панель относительно левого края страницы */
-    left: -320px;
-    /* внутренние отступы */
-    padding: 15px 20px;
-    /* плавный переход смещения панели */
+    align-items: center;
+    justify-content:center;  
+}
+
+ /*-----левая секция-----*/
+ /*-выдвигающееся меню-*/
+ .nav {
+    width: 100px;
+    min-width: 250px;
+    position: absolute;
+    top: 50px;
+    left: -100%;
     -webkit-transition: left 0.3s;
     -moz-transition: left 0.3s;
     transition: left 0.3s;
-    background: #16a085;
+    background: transparent;
     z-index: 2000;
 }
+.nav.open {
+    left: 0;
+}
 
-/**
- * Кнопка переключения панели
- * тег <label>
- */
-
+/*-кнопка меню (меню закрыто)-*/
 .nav-toggle {
     position: absolute;
-    left: 320px;
-    top: 1em;
-    padding: 0.5em;
+    float: left;
+    margin: 10px;
+    padding: 10px;
     background: inherit;
     color: #dadada;
     cursor: pointer;
-    font-size: 1.2em;
+    font-size: 30px;
     line-height: 1;
     z-index: 2001;
+    
     -webkit-transition: color .25s ease-in-out;
     -moz-transition: color .25s ease-in-out;
     transition: color .25s ease-in-out;
 }
-
-/* определяем текст кнопки 
- * символ Unicode (TRIGRAM FOR HEAVEN)
-*/
- 
 .nav-toggle:after {
     content: '\2630';
     text-decoration: none;
 }
- 
-/* цвет текста при наведении */
- 
 .nav-toggle:hover {
     color: #f4f4f4;
 }
- 
-/**
- * Скрытый чекбокс (флажок)
- * невидим и недоступен :)
- * имя селектора атрибут флажка
- */
- 
-[id='nav-toggle'] {
-    position: absolute;
-    display: none;
-}
- 
-/**
- * изменение положения переключателя 
- * при просмотре на мобильных устройствах
- * когда навигация раскрыта, распологаем внутри панели
-*/
- 
-[id='nav-toggle']:checked ~ .nav > .nav-toggle {
+
+/* для телефонов
+.nav-toggle.open {  
     left: auto;
+    margin-right: 20px;
     right: 2px;
     top: 1em;
 }
- 
-/**
- * Когда флажок установлен, открывается панель
- * используем псевдокласс:checked
- */
- 
-[id='nav-toggle']:checked ~ .nav {
-    left: 0;
-    overflow-y: auto;
+.nav-toggle {
+    position: absolute;
+    left: 50px;
+    top: 0;
+    padding: 0.5em;
 }
- 
-/*
- * изменение символа переключателя,
- * привычный крестик (MULTIPLICATION X), 
- * вы можете испльзовать любой другой значок
 */
- 
-[id='nav-toggle']:checked ~ .nav > .nav-toggle:after {
+.nav-toggle.open::after {
     content: '\2715';
 }
 }

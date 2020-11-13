@@ -10,56 +10,42 @@
 </head>
 <body>
   <header>
-    <div class="site-title">
-      <div id='menu'></div>
-      <input type="checkbox"  onclick="toToggleNav(this.value)">
-      <h1>CSS Generator</h1>
-    </div>   
+    <input id='menu-btn'type="checkbox"  onchange="toToggleNav(this.checked)" hidden>
+    <label class="nav-toggle" id="label-toggle" for="menu-btn"></label>
+    <h1>CSS Generator</h1>
+    <h2 id='screen-size'>1231</h2>
   </header>
   
-
-
   <div class="wrapped">
-    <div class="wrapper-flex">   
-      
-  <input type="checkbox" id='nav-toggle'>
+    <div class="wrapper-flex">
       <div class="nav" id='lpanel'>
-        
-  <label for="nav-toggle" class="nav-toggle" onclick></label>
         <div class="tree-panel">
-          
+
           <div class="tree-panel__item-title">Description</div>
-    
+
           <details class='tree-panel__item is-expandable' open>
             <summary class='tree-panel__item-title'> border </summary>
             <div class="tree-panel__item">              
-              <a class='tree-panel__item-title'> <input type="checkbox" id='border-radius'> <label for="border-radius">border-radius</label></a>           
-              <a class='tree-panel__item-title'> <input type="checkbox" id='border-widht'> <label for="border-widht">border-widht</label></a>             
               <a class='tree-panel__item-title'> <input type="checkbox" id='border-style'> <label for="border-style">border-style</label></a>              
               <a class='tree-panel__item-title'> <input type="checkbox" id='border-color'> <label for="border-color">border-color</label></a> 
+              <a class='tree-panel__item-title'> <input type="checkbox" id='border-widht'> <label for="border-widht">border-widht</label></a>             
             </div>
           </details>
-          
+
           <details class='tree-panel__item is-expandable'>
-            <summary class='tree-panel__item-title'> border </summary>
+            <summary class='tree-panel__item-title'> border-radius </summary>
             <div class="tree-panel__item">              
-              <a class='tree-panel__item-title'> <input type="checkbox" id='border-radius1'> <label for="border-radius1">border-radius</label></a>            
-              <a class='tree-panel__item-title'> <input type="checkbox" id='border-widht1'> <label for="border-widht1">border-widht</label></a>            
-              <a class='tree-panel__item-title'> <input type="checkbox" id='border-style1'> <label for="border-style1">border-style</label></a>             
-              <a class='tree-panel__item-title'> <input type="checkbox" id='border-color1'> <label for="border-color1">border-color</label></a>   
+              <a class='tree-panel__item-title'> <input type="checkbox" id='border-radius1'> <label for="border-radius1">top-left</label></a>            
+              <a class='tree-panel__item-title'> <input type="checkbox" id='border-widht1'> <label for="border-widht1">top-right</label></a>            
+              <a class='tree-panel__item-title'> <input type="checkbox" id='border-style1'> <label for="border-style1">bottom-right</label></a>             
+              <a class='tree-panel__item-title'> <input type="checkbox" id='border-color1'> <label for="border-color1">bottom-left</label></a>   
             </div>
           </details>
-    
-          <details class='tree-panel__item is-expandable'>
-            <summary class='tree-panel__item-title'> border </summary>
-            <div class="tree-panel__item">              
-              <a class='tree-panel__item-title'> <input type="checkbox" id='border-radius2'> <label for="border-radius2">border-radius</label></a>            
-              <a class='tree-panel__item-title'> <input type="checkbox" id='border-widht2'> <label for="border-widht2">border-widht</label></a>            
-              <a class='tree-panel__item-title'> <input type="checkbox" id='border-style2'> <label for="border-style2">border-style</label></a>             
-              <a class='tree-panel__item-title'> <input type="checkbox" id='border-color2'> <label for="border-color2">border-color</label></a>   
-            </div>
+
+          <details class='tree-panel__item'>
+            <summary class='tree-panel__item-title'> box-shadow </summary>
           </details>
-    
+
           <details class='tree-panel__item is-expandable'>
             <summary class='tree-panel__item-title'> border </summary>
             <div class="tree-panel__item">              
@@ -69,7 +55,7 @@
               <a class='tree-panel__item-title'> <input type="checkbox" id='border-color3'> <label for="border-color3">border-color</label></a>   
             </div>
           </details>
-    
+
           <details class='tree-panel__item is-expandable'>
             <summary class='tree-panel__item-title'> border </summary>
             <div class="tree-panel__item">              
@@ -79,7 +65,7 @@
               <a class='tree-panel__item-title'> <input type="checkbox" id='border-color1'> <label for="border-color1">border-color</label></a>   
             </div>
           </details>
-    
+
           <details class='tree-panel__item is-expandable'>
             <summary class='tree-panel__item-title'> border </summary>
             <div class="tree-panel__item">              
@@ -101,17 +87,16 @@
           </details>
           
         </div>
-      </div>  
-      
+      </div>
+
       <div class="window">
 
         <div class="window_item result-box">
           <h3>CSS код для вставки</h3>
           <div id='result-box__text-box'>
-            <p id="relust_border-style">border-style: none;</p>
-            <p id="relust_border-widht">border-widht: 0 0 0 0;</p>   
-            <p id="relust_border-radius">border-radius: 0 0 0 0;</p>     
-            <p id="relust_border-color">border-color: transperent;</p>   
+            <p id="result_border">border-style: none;</p>  
+            <p id="result_border-radius">border-radius: 0 0 0 0;</p>
+            <p id="result_shadow">box-shadow: none;</p>  
             <p>111111111111</p>
             <p>111111111111</p>
             <p>111111111111</p>
@@ -137,20 +122,30 @@
           <button onclick="Copy.ToBuffer()"> <p>КОПИРОВАТЬ</p> </button>
         </div>  
 
-        <div class="window_item">
-          <div id="cube"></div>
-        </div>
-
-        <div class="window_item">
-          <div id="test"></div>
+        <div class="window_item cube">
+          <div class="container">
+            <div id="cube"></div>
+          </div>
         </div>
 
       </div>  
       <div class="right-panel">
+
         <div class="input-box">
+          <div class="input-box_title">Box</div>
+          <div class="input-box_item">
+            <div class="input-box_item-title">Box widht</div>
+            <input type="range" id='box-widht' min="0" max="50" value="0" oninput='border.widht(this.value)' >
+            <div class="input-box_item-title">Box height</div>
+            <input type="range" id='box-height' min="0" max="50" value="0" oninput='border.widht(this.value)' >
+          </div>
+        </div>
+
+        <div class="input-box">
+        <div class="input-box_title">Border</div>
         <div class="input-box_item">
             <div class="input-box_item-title">Border style</div>
-            <select onchange="border.style.change(this.value)">
+            <select onchange="set.borderStyle(this.value, 'result_border')">
               <option>none</option>
               <option>solid</option>
               <option>dotted</option>
@@ -165,12 +160,12 @@
 
           <div class="input-box_item">
             <div class="input-box_item-title" >Broder color</div>
-            <input type="color" value = '#ffffff' oninput="border.color.change(this.value)">
+            <input type="color" value = '#ffffff' oninput="set.borderColor(this.value, 'result_border' )">
           </div>
 
           <div class="input-box_item">
             <div class="input-box_item-title">Border widht</div>
-            <input type="range" class="border-widht" id='range-border-widht' min="0" max="100" value="0" oninput='border.widht.change(this.value)' >
+            <input type="range" id='range-border-widht' min="0" max="50" value="0" oninput="set.borderWidht(this.value, 'result_border')" >
           </div>
           
           <div class="input-box_item">
@@ -193,13 +188,35 @@
             </div>  
           </div>
 
-          <div class="line"></div>
+        </div>
 
+        <div class="input-box">
+          <div class="input-box_title">Box shadow</div>
+          <div class="input-box_item">
+            <div class="input-box_item-title">Inset</div>
+            <input type="checkbox" min="-100" max="100" value="0" oninput='set.boxShadowInset(this.checked, "result_shadow")'>
+            <div class="input-box_item-title">Offset X</div>
+            <input type="range" min="-100" max="100" value="0" oninput='set.boxShadowOffsetX(this.value, "result_shadow")'>
+            <div class="input-box_item-title">Offset Y</div>
+            <input type="range" min="-100" max="100" value="0" oninput='set.boxShadowOffsetY(this.value, "result_shadow")'>
+            <div class="input-box_item-title">Blur</div>
+            <input type="range" min="0" max="100" value="0" oninput='set.boxShadowBlur(this.value, "result_shadow")'>
+            <div class="input-box_item-title">Spread</div>
+            <input type="range" min="-50" max="50" value="0" oninput='set.boxShadowSpread(this.value, "result_shadow")'>
+            <div class="input-box_item-title" >Shadow color</div>
+            <input type="color" value = '#ffffff' oninput="set.boxShadowColor(this.value, 'result_shadow' )">
+          </div>
+        </div>
+
+        <div class="input-box">
+          <div class="input-box_title">Image</div>
           <div class="input-box_item">
             <div class="input-box_item-title">Loade image</div>
             <input type="file" id="input-file" accept="image/*" onchange="OnLoaded(this)">
+            <img src="" id="outImage" alt="нетю">
           </div>
         </div>
+
       </div>    
     </div>
   </div>
