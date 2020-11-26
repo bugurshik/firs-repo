@@ -1,301 +1,272 @@
 //#region Border-radius changes
 const rangeTL = document.getElementById('tlr'),
-    rangeTR = document.getElementById('trr'),
-    rangeBL = document.getElementById('blr'),
-    rangeBR = document.getElementById('brr')
+  rangeTR = document.getElementById('trr'),
+  rangeBL = document.getElementById('blr'),
+  rangeBR = document.getElementById('brr')
 
 const resultTL = document.getElementById('result-tlr'),
-    resultTR = document.getElementById('result-trr'),
-    resultBL = document.getElementById('result-blr'),
-    resultBR = document.getElementById('result-brr')
+  resultTR = document.getElementById('result-trr'),
+  resultBL = document.getElementById('result-blr'),
+  resultBR = document.getElementById('result-brr')
 
-const resultBrRadius = document.getElementById('result_border-radius')
+const borderRadiusResult = document.getElementById('border-radius-result')
 
 const target = document.getElementById('cube')
-const tet = {
-    rangeTL: document.getElementById('tlr'),
-    rangeTR: document.getElementById('trr'),
-    rangeBL: document.getElementById('blr'),
-    rangeBR: document.getElementById('brr'),
+let unit = 'px'
 
-    resultTL: document.getElementById('result-tlr'),
-    resultTR: document.getElementById('result-trr'),
-    resultBL: document.getElementById('result-blr'),
-    resultBR: document.getElementById('result-brr'),
+target.addEventListener('click', function () {
+  alert(this.self)
+})
+
+rangeTL.addEventListener('input', function () {
+  set.borderTopLeft = this.value
+})
+rangeTR.addEventListener('input', function () {
+  set.borderTopRight = this.value
+})
+rangeBL.addEventListener('input', function () {
+  set.borderBottomLeft = this.value
+})
+rangeBR.addEventListener('input', function () {
+  set.borderBottomRight = this.value
+})
+resultTL.addEventListener('input', function () {
+  set.borderTopLeft = this.value.numericFilter().inRange(0, 100)
+})
+resultTR.addEventListener('input', function () {
+  set.borderTopRight = this.value.numericFilter().inRange(0, 100)
+})
+resultBL.addEventListener('input', function () {
+  set.borderBottomLeft = this.value.numericFilter().inRange(0, 100)
+})
+resultBR.addEventListener('input', function () {
+  set.borderBottomRight = this.value.numericFilter().inRange(0, 100)
+})
+//Binding
+//document.querySelectorAll('.input-range-border-radius').forEach((e) => e.addEventListener('input', changeBorderRadiusAll))
+document.querySelectorAll('.add-elem').forEach((e) => e.addEventListener('click', changeElemVisibility))
+for (node of document.querySelectorAll('.input-text-border-radius')) {
+  node.addEventListener('focus', textInputOnFocus)
+  node.addEventListener('blur', textInputBlur)
 }
 
+Object.defineProperty(HTMLElement.prototype, 'isOnDisplay', {
+  get() {
+    return window.getComputedStyle(this).display !== 'none'
+  },
+})
 //Возвращает поседний элемент который не содержит класс
 HTMLElement.prototype.lastChildBefore = function (stopClass) {
-    let lastChild
-    for (let element of this.children) {
-        if (element.classList.contains(stopClass)) {
-            break
-        }
-        lastChild = element
+  let lastChild
+  for (let element of this.children) {
+    if (element.classList.contains(stopClass)) {
+      break
     }
-    return lastChild ? lastChild : undefined
+    lastChild = element
+  }
+  return lastChild ? lastChild : undefined
 }
 //Фильтрует текст. Возвращает только цифры
 String.prototype.numericFilter = function () {
-    return +this[0] ? +this.replace(/[^\d]/g, '') : ''
+  return +this[0] ? +this.replace(/[^\d]/g, '') : ''
 }
 //Возвращает чисто в указанном диапазоне
 Number.prototype.inRange = function (min, max) {
-    return this < min ? min : this > max ? max : this
-}
-const changeElemVisibility = function () {
-    let lastChild = this.parentNode.lastChildBefore('hide')
-    alert(lastChild.className)
-    if (!lastChild.classList.contains('hide')) {
-        lastChild.className += ' hide'
-    } else {
-        lastChild.className = lastChild.className.replace(' hide', '')
-    }
+  return this < min ? min : this > max ? max : this
 }
 
-const compareInput = {
-    tlr: resultTL, //1-all  2,3,4-top-left
-    trr: resultTR, //2,3-topRight &bottomLeft 4- top-Right
-    blr: resultBL, //3,4-bottom-Right
-    brr: resultBR, //4-bottom-left
-    ['result-tlr']: rangeTL,
-    ['result-trr']: rangeTR,
-    ['result-blr']: rangeBL,
-    ['result-brr']: rangeBR,
+function toggleClassVisibility(...classElem) {
+  alert(document.querySelectorAll(classElem).forEach((e) => e.classList.toggle('hide')))
 }
-const changeBorderRadiusAll = function () {
-    let elem = 0
-    if (this.type == 'text') this.value = this.value.numericFilter().inRange(0, 100)
-    for (let val in tet) {
-        if (window.getComputedStyle(tet[val].parentNode).display !== 'none') elem++
-    }
-    switch (elem / 2) {
-        case 4:
-            target.style.borderRadius = rangeTL.value + 'px ' + rangeTR.value + 'px ' + rangeBR.value + 'px ' + rangeBL.value + 'px'
-            resultBrRadius.innerHTML = 'border-radius: ' + rangeTL.value + ' ' + rangeTR.value + ' ' + rangeBR.value + ' ' + rangeBL.value + ';'
-            break
-
-        case 3:
-            compareInput[this.id].value = this.value
-            target.style.borderRadius = rangeTL.value + 'px ' + rangeTR.value + 'px ' + rangeBR.value + 'px '
-            resultBrRadius.innerHTML = 'border-radius: ' + rangeTL.value + ' ' + rangeTR.value + ' ' + rangeBL.value + ';'
-            break
-
-        case 2:
-            compareInput[this.id].value = this.value
-            target.style.borderRadius = rangeTL.value + 'px ' + rangeTR.value + 'px '
-            resultBrRadius.innerHTML = 'border-radius: ' + rangeTL.value + 'px ' + rangeTR.value + 'px;'
-            break
-        case 1:
-            compareInput[this.id].value = this.value
-            target.style.borderRadius = rangeTL.value + 'px '
-            resultBrRadius.innerHTML = 'border-radius: ' + rangeTL.value + 'px '
-            break
-    }
+function changeElemVisibility() {
+  let lastChild = this.parentNode.lastChildBefore('hide')
+  lastChild.classList.toggle('hide')
+}
+function textInputOnFocus() {
+  this.value = this.value == 0 ? '' : this.value
+}
+function textInputBlur() {
+  this.value = this.value == 0 ? 0 : this.value
 }
 
-const textInputOnFocus = function () {
-    this.value = this.value == 0 ? '' : this.value
-}
-const textInputBlur = function () {
-    this.value = this.value == 0 ? 0 : this.value
-}
-
-//Binding
-document.querySelectorAll('.input-range-border-radius').forEach((e) => e.addEventListener('input', changeBorderRadiusAll))
-
-document.querySelectorAll('.add-elem').forEach((e) => e.addEventListener('click', changeElemVisibility))
-
-for (node of document.querySelectorAll('.input-text-border-radius')) {
-    node.addEventListener('input', changeBorderRadiusAll)
-    node.addEventListener('focus', textInputOnFocus)
-    node.addEventListener('blur', textInputBlur)
-}
-
-//Елементы копирования
-const Copy = {
-    contentBox: document.getElementById('result-box__text-box'),
-    ToBuffer() {
-        //выделение текста
-        let selectedRange = document.createRange()
-        selectedRange.selectNode(this.contentBox)
-        window.getSelection().addRange(selectedRange)
-        //пытаемся скопировать текст в буфер обмена
-        try {
-            document.execCommand('copy')
-        } catch (err) {
-            console.log('Can`t copy, boss')
-        }
-        //очистим выделение текста, чтобы пользователь "не парился"
-        window.getSelection().removeAllRanges()
-    },
-}
-
-const get = {
-    get border() {
-        return `${this.borderWidht}px ${this.borderStyle} ${this.borderColor}`
-    },
-    borderWidht: 0,
-    borderStyle: 'none',
-    borderColor: '#111111',
-
-    get borderRadius() {
-        return `${this.borderTopLeft}px ${this.borderTopRight}px ${this.borderBottomRight}px ${this.borderBottomLeft}px`
-    },
-    borderTopLeft: 0,
-    borderTopRight: 0,
-    borderBottomRight: 0,
-    borderBottomLeft: 0,
-
-    get boxShadow() {
-        return `${this.boxShadowOffsetX}px ${this.boxShadowOffsetY}px ${this.boxShadowBlur}px ${this.boxShadowSpread}px 
-    ${this.boxShadowColor} ${this.boxShadowInset}`
-    },
-    boxShadowOffsetX: '0',
-    boxShadowOffsetY: '0',
-    boxShadowBlur: '0',
-    boxShadowSpread: '0',
-    boxShadowColor: '',
-    boxShadowInset: '',
+function changeBorderRadiusAll() {
+  if (this.type == 'text') this.value = this.value.numericFilter().inRange(0, 100)
 }
 
 const set = {
-    //border
-    px: 'px ',
-    border() {
-        return `${this.borderWidht}px ${this.borderStyle} ${this.borderColor}`
-    },
-    borderUpdate(resultId) {
-        target.style.border = get.border
-        document.getElementById(resultId).innerHTML = 'border: ' + get.border
-    },
-    borderWidht(newValue, resultId) {
-        get.borderWidht = newValue
-        this.borderUpdate(resultId)
-    },
-    borderStyle(newValue, resultId) {
-        get.borderStyle = newValue
-        this.borderUpdate(resultId)
-    },
-    borderColor(newValue, resultId) {
-        get.borderColor = newValue
-        this.borderUpdate(resultId)
-    },
+  //border
+  get border() {
+    return `${this._borderWidht}px ${this._borderStyle} ${this._borderColor}`
+  },
+  borderUpdate() {
+    target.style.border = this.border
+    this.borderResultElementId.innerHTML = 'border: ' + this.border
+  },
+  set borderWidht(newValue) {
+    this._borderWidht = newValue
+    this.borderUpdate()
+  },
+  set borderStyle(newValue) {
+    this._borderStyle = newValue
+    this.borderUpdate()
+  },
+  set borderColor(newValue) {
+    this._borderColor = newValue
+    this.borderUpdate()
+  },
+  borderInputElementId: document.getElementById('border-I'),
+  borderResultElementId: document.getElementById('result-border'),
+  _border: '0 0 0',
+  _borderWidht: 0,
+  _borderStyle: 'none',
+  _borderColoe: 'black',
 
-    //border-radius
-    borderRadiusUpdate(resultId) {
-        target.style.borderRadius = get.borderRadius
-        document.getElementById(resultId).innerHTML = 'border-radius: ' + get.borderRadius
-    },
-    borderRadius(newValue, resultId) {
-        get.borderTopLeft = newValue
-        get.borderTopRight = ''
-        get.borderBottomRight = ''
-        get.borderBottomLeft = ''
-        this.borderRadiusUpdate(resultId)
-    },
-    borderTopLeft(newValue, resultId) {
-        get.borderTopLeft = newValue
-        this.borderRadiusUpdate(resultId)
-    },
-    borderTopRight(newValue, resultId) {
-        get.borderTopRight = newValue
-        this.borderRadiusUpdate(resultId)
-    },
-    borderBottomRight(newValue, resultId) {
-        get.borderBottomRight = newValue
-        this.borderRadiusUpdate(resultId)
-    },
-    borderBottomRight(newValue, resultId) {
-        get.borderBottomLeft = newValue
-        this.borderRadiusUpdate(resultId)
-    },
+  //border-radius
+  get borderRadius() {
+    return `${this.borderTopLeft} ${this.borderTopRight} ${this.borderBottomRight} ${this.borderBottomLeft}`
+  },
+  borderRadiusUpdate() {
+    target.style.borderRadius = this.borderRadius
+    //alert(this.borderRadius)
+    borderRadiusResult.innerHTML = 'border-radius: ' + this.borderRadius + ';'
+  },
+  get borderTopLeft() {
+    return rangeTL.parentNode.isOnDisplay ? this._borderTopLeft + unit : ''
+  },
+  set borderTopLeft(newValue) {
+    this._borderTopLeft = newValue
+    resultTL.value = newValue
+    this.borderRadiusUpdate()
+  },
+  get borderTopRight() {
+    return rangeTR.parentNode.isOnDisplay ? this._borderTopRight + unit : ''
+  },
+  set borderTopRight(newValue) {
+    this._borderTopRight = newValue
+    resultTR.value = newValue
+    this.borderRadiusUpdate()
+  },
+  get borderBottomRight() {
+    return rangeBR.parentNode.isOnDisplay ? this._borderBottomRight + unit : ''
+  },
+  set borderBottomRight(newValue) {
+    this._borderBottomRight = newValue
+    resultBR.value = newValue
+    this.borderRadiusUpdate()
+  },
+  get borderBottomLeft() {
+    return rangeBL.parentNode.isOnDisplay ? this._borderBottomLeft + unit : ''
+  },
+  set borderBottomLeft(newValue) {
+    this._borderBottomLeft = newValue
+    resultBL.value = newValue
+    this.borderRadiusUpdate()
+  },
+  _borderTopLeft: 0,
+  _borderTopRight: 0,
+  _borderBottomRight: 0,
+  _borderBottomLeft: 0,
 
-    //box-shadow
-    boxShadowUpdate(resultId) {
-        target.style.boxShadow = get.boxShadow
-        document.getElementById(resultId).innerHTML = 'box-shadow: ' + get.boxShadow
-    },
-    boxShadowInset(newValue, resultId) {
-        get.boxShadowInset = newValue ? 'inset' : ''
-        this.boxShadowUpdate(resultId)
-    },
-    boxShadowOffsetX(newValue, resultId) {
-        get.boxShadowOffsetX = newValue
-        this.boxShadowUpdate(resultId)
-    },
-    boxShadowOffsetY(newValue, resultId) {
-        get.boxShadowOffsetY = newValue
-        this.boxShadowUpdate(resultId)
-    },
-    boxShadowBlur(newValue, resultId) {
-        get.boxShadowBlur = newValue
-        this.boxShadowUpdate(resultId)
-    },
-    boxShadowSpread(newValue, resultId) {
-        get.boxShadowSpread = newValue
-        this.boxShadowUpdate(resultId)
-    },
-    boxShadowColor(newValue, resultId) {
-        get.boxShadowColor = newValue
-        this.boxShadowUpdate(resultId)
-    },
+  //box-shadow
+  get boxShadow() {
+    return `${this._boxShadowOffsetX}px ${this._boxShadowOffsetY}px ${this._boxShadowBlur}px ${this._boxShadowSpread}px 
+    ${this._boxShadowColor} ${this._boxShadowInset}`
+  },
+  boxShadowUpdate() {
+    target.style.boxShadow = this.boxShadow
+    document.getElementById('result-shadow').innerHTML = 'box-shadow: ' + this.boxShadow
+  },
+  set boxShadowInset(newValue) {
+    this._boxShadowInset = newValue ? 'inset' : ''
+    this.boxShadowUpdate()
+  },
+  set boxShadowOffsetX(newValue) {
+    this._boxShadowOffsetX = newValue
+    this.boxShadowUpdate()
+  },
+  set boxShadowOffsetY(newValue) {
+    this._boxShadowOffsetY = newValue
+    this.boxShadowUpdate()
+  },
+  set boxShadowBlur(newValue) {
+    this._boxShadowBlur = newValue
+    this.boxShadowUpdate()
+  },
+  set boxShadowSpread(newValue) {
+    this._boxShadowSpread = newValue
+    this.boxShadowUpdate()
+  },
+  set boxShadowColor(newValue) {
+    this._boxShadowColor = newValue
+    this.boxShadowUpdate()
+  },
+  _boxShadowOffsetX: '0',
+  _boxShadowOffsetY: '0',
+  _boxShadowBlur: '0',
+  _boxShadowSpread: '0',
+  _boxShadowColor: 'black',
+  _boxShadowInset: '',
 }
 
 //debug sreen size
-document.addEventListener('DOMContentLoaded', function (e) {
-    window.onresize = function () {
-        showWindowSize()
-    }
-})
-const scrSize = document.getElementById('screen-size')
+const scrSizeElem = document.getElementById('screen-size')
 function showWindowSize() {
-    scrSize.innerHTML = document.documentElement.scrollWidth
+  scrSizeElem.innerHTML = document.documentElement.scrollWidth
 }
+document.addEventListener('DOMContentLoaded', function () {
+  window.onresize = showWindowSize
+})
 
 //Loading image
 const imgInput = document.getElementById('input-file')
 const imgOutput = document.getElementById('outImage')
 
-const OnLoaded = function (evt) {
-    var tgt = evt.target || window.event.srcElement,
-        files = tgt.files
-    // FileReader support
-    if (FileReader && files && files.length) {
-        var fr = new FileReader()
-        fr.onload = function () {
-            imgOutput.src = fr.result
-        }
-        fr.readAsDataURL(files[0])
+function OnLoaded(evt) {
+  var tgt = evt.target || window.event.srcElement,
+    files = tgt.files
+  // FileReader support
+  if (FileReader && files && files.length) {
+    var fr = new FileReader()
+    fr.onload = function () {
+      imgOutput.src = fr.result
+    }
+    fr.readAsDataURL(files[0])
 
-        imgOutput.style.width = '50px'
-        imgOutput.style.height = '50px'
-    }
-    // Not supported
-    else {
-        alert('err')
-    }
+    imgOutput.style.width = '50px'
+    imgOutput.style.height = '50px'
+  }
+  // Not supported
+  else {
+    alert('err')
+  }
 }
 
 //открыть & закрыть левое меню(при маленьком размере экрана)
 const navToggle = document.getElementById('label-toggle')
 const nav = document.getElementById('lpanel')
-const toToggleNav = function (isChecked) {
-    if (isChecked) {
-        nav.className += ' open'
-        navToggle.className += ' open'
-    } else {
-        nav.className = nav.className.replace('open', '')
-        navToggle.className = navToggle.className.replace('open', '')
-    }
+function toToggleNav() {
+  nav.classList.toggle('open')
+  navToggle.classList.toggle('open')
 }
 
-const hideElement = function (elementId) {
-    document.getElementById(elementId)
+//Копирование содержимого в буфер
+function copyToBuffer(textContainer) {
+  //выделение текста
+  let selectedRange = document.createRange()
+  selectedRange.selectNode(document.getElementById(textContainer))
+  window.getSelection().addRange(selectedRange)
+  //пытаемся скопировать текст в буфер обмена
+  try {
+    document.execCommand('copy')
+  } catch (err) {
+    console.log('Can`t copy, boss')
+  }
+  //очистим выделение текста, чтобы пользователь "не парился"
+  window.getSelection().removeAllRanges()
 }
 
 Object.defineProperty(String.prototype, 'prop', {
-    get() {
-        return this
-    },
+  get() {
+    return this
+  },
 })
