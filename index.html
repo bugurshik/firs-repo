@@ -160,7 +160,7 @@
           <div class="window_item result-box">
             <h3>CSS код для вставки</h3>
             <div id="result-box__text-box">
-              <p id="result-border">border-style: none;</p>
+              <p id="border-result">border-style: none;</p>
               <p id="border-radius-result">border-radius: 0 0 0 0;</p>
               <p id="result-shadow">box-shadow: none;</p>
               <p>111111111111</p>
@@ -199,7 +199,7 @@
           <div class="input-box">
             <div class="input-box_title">Box</div>
             <div class="input-box_item">
-              <div class="input-box_item-title">Box widht</div>
+              <div class="input-box_item-title">Box widtt</div>
               <input type="range" id="box-widht" min="0" max="50" value="0" oninput="set.widht(this.value)" />
               <div class="input-box_item-title">Box height</div>
               <input type="range" id="box-height" min="0" max="50" value="0" oninput="set.height(this.value)" />
@@ -210,59 +210,56 @@
             <div class="input-box_title">Border</div>
             <div class="input-box_item" id="border-style-I">
               <div class="input-box_item-title">Border style</div>
-              <select class="inputR" name="borderStyle" oninput="set.borderStyle = this.value">
-                <option>none</option>
-                <option>solid</option>
-                <option>dotted</option>
-                <option>dashed</option>
-                <option>double</option>
-                <option>groove</option>
-                <option>ridge</option>
-                <option>inset</option>
-                <option>outset</option>
-              </select>
+              <div class="input-box_element">
+                <select id="I-border-style">
+                  <option>none</option>
+                  <option>solid</option>
+                  <option>dotted</option>
+                  <option>dashed</option>
+                  <option>double</option>
+                  <option>groove</option>
+                  <option>ridge</option>
+                  <option>inset</option>
+                  <option>outset</option>
+                </select>
+              </div>
             </div>
 
             <div class="input-box_item" id="border-color-I">
               <div class="input-box_item-title">Broder color</div>
-              <input class="inputR" name="borderColor" type="color" value="#ffffff" oninput="set.borderColor = this.value" />
+              <div class="input-box_element">
+                <input id="I-border-color" type="color" value="#ffffff" />
+              </div>
             </div>
 
             <div class="input-box_item">
-              <div class="input-box_item-title">Border widht</div>
-              <input
-                class="inputR"
-                name="borderWidht"
-                type="range"
-                id="range-border-widht"
-                min="0"
-                max="50"
-                value="0"
-                oninput="set.borderWidht = this.value"
-              />
+              <div class="input-box_item-title">Border width</div>
+              <div class="input-box_element">
+                <input type="range" id="I-border-width" min="0" max="50" value="0" />
+              </div>
             </div>
           </div>
 
-          <div class="input-box">
-            <div class="input-box_item" id="border-radius">
-              <div class="input-box_item-title">Border Radius</div>
+          <div class="input-box" id="border-radius">
+            <div class="input-box_title">Border Radius</div>
+            <div class="input-box_item">
               <button class="add-elem">+</button>
               <button class="remove-elem">-</button>
               <div class="input-box_element">
-                <input type="text" class="input-text-border-radius" placeholder="0" id="result-tlr" value="0" maxlength="3" />
-                <input type="range" class="input-range-border-radius" id="tlr" min="0" max="100" value="0" />
+                <input type="text" class="input-text-border-radius" placeholder="0" id="input-text-tlr" value="0" maxlength="3" />
+                <input type="range" class="input-range-border-radius" id="input-tlr" min="0" max="100" value="0" />
               </div>
               <div class="input-box_element">
-                <input type="text" class="input-text-border-radius" placeholder="0" id="result-trr" value="0" maxlength="3" />
-                <input type="range" class="input-range-border-radius" id="trr" min="0" value="0" />
+                <input type="text" class="input-text-border-radius" placeholder="0" id="input-text-trr" value="0" maxlength="3" />
+                <input type="range" class="input-range-border-radius" id="input-trr" min="0" value="0" />
               </div>
               <div class="input-box_element">
-                <input type="text" class="input-text-border-radius" id="result-brr" value="0" maxlength="3" />
-                <input type="range" class="input-range-border-radius" id="brr" min="0" ; max="100" ; value="0" />
+                <input type="text" class="input-text-border-radius" id="input-text-brr" value="0" maxlength="3" />
+                <input type="range" class="input-range-border-radius" id="input-brr" min="0" ; max="100" ; value="0" />
               </div>
               <div class="input-box_element hide">
-                <input type="text" class="input-text-border-radius" id="result-blr" value="0" maxlength="3" />
-                <input type="range" class="input-range-border-radius" id="blr" min="0" ; max="100" ; value="0" />
+                <input type="text" class="input-text-border-radius" id="input-text-blr" value="0" maxlength="3" />
+                <input type="range" class="input-range-border-radius" id="input-blr" min="0" ; max="100" ; value="0" />
               </div>
             </div>
           </div>
