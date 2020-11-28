@@ -1,6 +1,44 @@
 const target = document.getElementById('cube')
 let unit = 'px'
 
+//Binding
+document.querySelectorAll('.add-elem').forEach((e) => e.addEventListener('click', changeElemVisibility))
+for (node of document.querySelectorAll('.input-text-border-radius')) {
+  node.addEventListener('focus', textInputOnFocus)
+  node.addEventListener('blur', textInputBlur)
+}
+
+
+///====================
+/// Global function 
+///====================
+
+
+function toggleClassVisibility(...classElem) {
+  document.querySelectorAll(classElem).forEach((e) => e.classList.toggle('hide'))
+}
+function changeElemVisibility() {
+  let lastChild = this.parentNode.lastChildBefore('hide')
+  lastChild.classList.toggle('hide')
+}
+
+
+///====================
+/// Set prototypes 
+///====================
+
+
+//Возвращает поседний элемент который не содержит класс
+HTMLElement.prototype.lastChildBefore = function (stopClass) {
+  let lastChild
+  for (let element of this.children) {
+    if (element.classList.contains(stopClass)) {
+      break
+    }
+    lastChild = element
+  }
+  return lastChild ? lastChild : undefined
+}
 //Фильтрует текст. Возвращает только цифры
 String.prototype.numericFilter = function () {
   return +this[0] ? +this.replace(/[^\d]/g, '') : ''
@@ -9,6 +47,18 @@ String.prototype.numericFilter = function () {
 Number.prototype.inRange = function (min, max) {
   return this < min ? min : this > max ? max : this
 }
+
+Object.defineProperty(HTMLElement.prototype, 'isOnDisplay', {
+  get() {
+    return window.getComputedStyle(this).display !== 'none'
+  },
+})
+
+
+///====================
+/// Main
+///====================
+
 
 class Input {
   constructor(firstId, secondId = 0) {
@@ -85,49 +135,6 @@ let border = {
     return this.width.value + ' ' + this.style.value + ' ' + this.color.value
   },
 }
-Object.defineProperty(borderRad.tl, 'value', {
-  set(newValue) {
-    borderRad.tl._value = newValue
-    borderRad.update()
-  },
-})
-//Binding
-document.querySelectorAll('.add-elem').forEach((e) => e.addEventListener('click', changeElemVisibility))
-for (node of document.querySelectorAll('.input-text-border-radius')) {
-  node.addEventListener('focus', textInputOnFocus)
-  node.addEventListener('blur', textInputBlur)
-}
-
-Object.defineProperty(HTMLElement.prototype, 'isOnDisplay', {
-  get() {
-    return window.getComputedStyle(this).display !== 'none'
-  },
-})
-//Возвращает поседний элемент который не содержит класс
-HTMLElement.prototype.lastChildBefore = function (stopClass) {
-  let lastChild
-  for (let element of this.children) {
-    if (element.classList.contains(stopClass)) {
-      break
-    }
-    lastChild = element
-  }
-  return lastChild ? lastChild : undefined
-}
-
-function toggleClassVisibility(...classElem) {
-  document.querySelectorAll(classElem).forEach((e) => e.classList.toggle('hide'))
-}
-function changeElemVisibility() {
-  let lastChild = this.parentNode.lastChildBefore('hide')
-  lastChild.classList.toggle('hide')
-}
-function textInputOnFocus() {
-  this.value = this.value == 0 ? '' : this.value
-}
-function textInputBlur() {
-  this.value = this.value == 0 ? 0 : this.value
-}
 
 const set = {
   //box-shadow
@@ -171,14 +178,11 @@ const set = {
   _boxShadowInset: '',
 }
 
-//debug sreen size
-const scrSizeElem = document.getElementById('screen-size')
-function showWindowSize() {
-  scrSizeElem.innerHTML = document.documentElement.scrollWidth
-}
-document.addEventListener('DOMContentLoaded', function () {
-  window.onresize = showWindowSize
-})
+
+///====================
+/// Features
+///====================
+
 
 //Loading image
 const imgInput = document.getElementById('input-file')
@@ -220,6 +224,19 @@ function copyToBuffer(textContainer) {
   window.getSelection().removeAllRanges()
 }
 
+function textInputOnFocus() {
+  this.value = this.value == 0 ? '' : this.value
+}
+function textInputBlur() {
+  this.value = this.value == 0 ? 0 : this.value
+}
+
+
+///====================
+/// Mobile
+///====================
+
+
 //#region [Mobile]
 
 //открыть & закрыть левое меню(при маленьком размере экрана)
@@ -230,6 +247,8 @@ function toToggleNav() {
   navToggle.classList.toggle('open')
 }
 //#endregion
-//#region [Tests]
 
-//#endregion
+///====================
+/// Tests
+///====================
+
